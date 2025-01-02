@@ -73,7 +73,7 @@ body {
 
 
 .hero-image-wrapper {
-  perspective: 1000px;
+  perspective: 500px;
 }
 
 .hero-image {
