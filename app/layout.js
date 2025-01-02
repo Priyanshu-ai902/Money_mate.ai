@@ -17,11 +17,7 @@ export default function RootLayout({ children }) {
           <main className="min-h-screen">
             {children}
           </main>
-          <footer>
-            <div className="container mx-auto px-4 text-center text-gray-600">
-              <p>Money-mate AI - Your smart companion for mastering finances!</p>
-            </div>
-          </footer>
+          
         </body>
       </html>
     </ClerkProvider>
