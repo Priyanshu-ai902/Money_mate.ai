@@ -17,15 +17,18 @@ const Header = async () => {
             height={40}
             width={100}
           />
-          <h1 className="text-3xl font-semibold">
-            <span className="bg-gradient-to-r from-teal-500 to-green-500 bg-clip-text text-transparent">
-              Money
-            </span>
-            <span className="bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">-mate</span>
-          </h1>
+          <Link href={"/"}>
+            <h1 className="text-3xl font-semibold">
+              <span className="bg-gradient-to-r from-teal-500 to-green-500 bg-clip-text text-transparent">
+                Money
+              </span>
+              <span className="bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">-mate</span>
+            </h1>
+          </Link>
+
         </div>
 
-        
+
 
         <div className="flex space-x-4">
           <SignedIn>

@@ -1,6 +1,7 @@
 import Header from "@/components/header";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "sonner";
 
 
 export const metadata = {
@@ -17,7 +18,7 @@ export default function RootLayout({ children }) {
           <main className="min-h-screen">
             {children}
           </main>
-          
+          <Toaster richColors/>
         </body>
       </html>
     </ClerkProvider>
