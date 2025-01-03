@@ -6,6 +6,7 @@ import { CreateAccountDrawer } from "@/components/create-account-drawer";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Plus } from "lucide-react";
+import AccountCard from './_components/account-card';
 
 
 export default async function DashboardPage() {
@@ -17,10 +18,7 @@ export default async function DashboardPage() {
 
   const defaultAccount = accounts?.find((account) => account.isDefault);
 
-  let budgetData = null;
-  if (defaultAccount) {
-    budgetData = await getCurrentBudget(defaultAccount.id);
-  }
+  
 
 
   return (

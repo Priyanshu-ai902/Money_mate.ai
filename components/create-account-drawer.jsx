@@ -9,7 +9,7 @@ import {
   DrawerTrigger,
   DrawerClose,
 } from "@/components/ui/drawer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Input } from "./ui/input";
@@ -22,6 +22,10 @@ import {
   } from "@/components/ui/select";
 import { Switch } from "./ui/switch";
 import { Button } from "./ui/button";
+import useFetch from "@/hooks/use-fetch";
+import { createAccount } from "@/actions/dashboard";
+import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 
 export function CreateAccountDrawer({ children }) {
@@ -43,6 +47,32 @@ export function CreateAccountDrawer({ children }) {
       isDefault: false,
     },
   });
+
+  const {
+    loading: createAccountLoading,
+    fn: createAccountFn,
+    error,
+    data: newAccount,
+  } = useFetch(createAccount);
+
+  const onSubmit = async (data) => {
+    await createAccountFn(data);
+  };
+
+
+  useEffect(() => {
+    if (newAccount) {
+      toast.success("Account created successfully");
+      reset();
+      setOpen(false);
+    }
+  }, [newAccount, reset]);
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error.message || "Failed to create account");
+    }
+  }, [error]);
   
 
   return (
@@ -62,6 +92,7 @@ export function CreateAccountDrawer({ children }) {
                 Account Name
               </label>
               <Input
+              className="text-white"
                 id="name"
                 placeholder="e.g., Main Checking"
                 {...register("name")}
@@ -142,10 +173,17 @@ export function CreateAccountDrawer({ children }) {
               </DrawerClose>
               <Button
                 type="submit"
-                className="flex-1">
-                
-                  Create Account
-                
+                className="flex-1"
+                disabled={createAccountLoading}
+              >
+                {createAccountLoading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Creating...
+                  </>
+                ) : (
+                  "Create Account"
+                )}
               </Button>
             </div>
           </form>

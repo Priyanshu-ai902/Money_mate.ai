@@ -54,29 +54,7 @@ export async function createAccount(data) {
     const { userId } = await auth();
     if (!userId) throw new Error("Unauthorized");
 
-    const req = await request();
-
-    const decision = await aj.protect(req, {
-      userId,
-      requested: 1, 
-    });
-
-    if (decision.isDenied()) {
-      if (decision.reason.isRateLimit()) {
-        const { remaining, reset } = decision.reason;
-        console.error({
-          code: "RATE_LIMIT_EXCEEDED",
-          details: {
-            remaining,
-            resetInSeconds: reset,
-          },
-        });
-
-        throw new Error("Too many requests. Please try again later.");
-      }
-
-      throw new Error("Request blocked");
-    }
+   
 
     const user = await db.user.findUnique({
       where: { clerkUserId: userId },
@@ -98,7 +76,7 @@ export async function createAccount(data) {
     const shouldBeDefault =
       existingAccounts.length === 0 ? true : data.isDefault;
 
-   
+    
     if (shouldBeDefault) {
       await db.account.updateMany({
         where: { userId: user.id, isDefault: true },
