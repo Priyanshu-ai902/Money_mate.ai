@@ -159,10 +159,20 @@ export function CreateAccountDrawer({ children }) {
                 </p>
               </div>
               <Switch
-                id="isDefault"
-                checked={watch("isDefault")}
-                onCheckedChange={(checked) => setValue("isDefault", checked)}
-              />
+  id="isDefault"
+  checked={watch("isDefault")}
+  onCheckedChange={(checked) => setValue("isDefault", checked)}
+  className="data-[state=checked]:bg-blue-500 data-[state=unchecked]:bg-gray-600 relative inline-flex h-6 w-11 rounded-full transition-colors"
+>
+  <span
+    className={`absolute left-0.5 top-0.5 inline-block h-5 w-5 transform rounded-full bg-white transition-transform ${
+      watch("isDefault") ? "translate-x-5" : "translate-x-0"
+    }`}
+  />
+</Switch>
+
+
+
             </div>
 
             <div className="flex gap-4 pt-4">
