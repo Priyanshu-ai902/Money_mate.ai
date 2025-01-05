@@ -76,7 +76,6 @@ export async function bulkDeleteTransactions(transactionIds) {
     }, {});
 
     await db.$transaction(async (tx) => {
-      // Delete transactions
       await tx.transaction.deleteMany({
         where: {
           id: { in: transactionIds },
