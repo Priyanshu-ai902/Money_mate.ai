@@ -4,7 +4,7 @@ import RingLoader from "react-spinners/RingLoader";
 
 const DashboardLayout = () => {
     return (
-        <div className="">
+        <div className=" overflow-auto scroll-smooth bg-black">
             <div className="flex items-center justify-between p-3 bg-black">
                 <h1 className="text-6xl font-bold tracking-tight text-teal-400 p-10">
                     Dashboard
@@ -17,10 +17,10 @@ const DashboardLayout = () => {
                     </div>
                 }
             >
-                <DashboardPage/>
+                <DashboardPage />
             </Suspense>
-
         </div>
+
     );
 };
 
