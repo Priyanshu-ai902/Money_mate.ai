@@ -1,27 +1,31 @@
 import React, { Suspense } from 'react';
-import DashboardPage from './page';
 import RingLoader from "react-spinners/RingLoader";
 
-const DashboardLayout = () => {
+const DashboardLayout = ({ children }) => {
     return (
-        <div className=" overflow-auto scroll-smooth bg-black">
-            <div className="flex items-center justify-between p-3 bg-black">
-                <h1 className="text-6xl font-bold tracking-tight text-teal-400 p-10">
-                    Dashboard
-                </h1>
+        <div className="min-h-screen bg-black text-slate-100">
+            <div className="max-w-[1400px] mx-auto px-6 pt-8 space-y-6">
+                <div className="flex flex-col space-y-1">
+                    <h1 className="text-4xl font-bold tracking-tight text-teal-400">
+                        Dashboard
+                    </h1>
+                    <p className="text-sm text-slate-400">
+                        Track your finances and spending insights.
+                    </p>
+                </div>
+                <Suspense
+                    fallback={
+                        <div className="flex items-center justify-center py-20">
+                            <RingLoader color="#2dd4bf" size={60} />
+                        </div>
+                    }
+                >
+                    {children}
+                </Suspense>
             </div>
-            <Suspense
-                fallback={
-                    <div className="fixed inset-0 flex items-center justify-center bg-white">
-                        <RingLoader color="#36d7b7" size={60} />
-                    </div>
-                }
-            >
-                <DashboardPage />
-            </Suspense>
         </div>
-
     );
 };
 
 export default DashboardLayout;
+
