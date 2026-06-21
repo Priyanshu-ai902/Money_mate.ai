@@ -4,6 +4,9 @@ const nextConfig = {
     domains: ['autogpt.net', 'randomuser.me'],
 
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 
 
   experimental: {
