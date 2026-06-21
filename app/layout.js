@@ -5,7 +5,7 @@ import { Toaster } from "sonner";
 
 
 export const metadata = {
-  title: "Money-mate AI",
+  title: "Money-mate",
   description: " Your smart companion for mastering finances!",
 };
 
